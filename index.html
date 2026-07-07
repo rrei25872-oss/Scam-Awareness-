@@ -3,95 +3,378 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hahaha</title>
-<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>Happy Monthsary ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Comic Neue', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
-  }
 
-  .envelope-container {
-    cursor: pointer;
-    text-align: center;
-  }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  .envelope {
-    font-size: 5em;
-    transition: transform 0.3s;
-  }
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffd6e8,#fff5f8,#ffe9f2);
+    overflow-x:hidden;
+    color:#444;
+}
 
-  .envelope:hover {
-    transform: scale(1.2);
-  }
+/* Floating Hearts & Flowers */
 
-  .letter {
-    max-width: 600px;
-    background: rgba(0,0,0,0.2);
-    padding: 30px;
-    border-radius: 15px;
-    margin-top: 20px;
-    display: none;
-    text-align: left;
-    color: #fff;
-  }
+.floating{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
 
-  /* Floating hearts */
-  .floating-heart {
-    position: absolute;
-    font-size: 24px;
-    animation: floatUp linear infinite;
-  }
+.floating span{
+    position:absolute;
+    bottom:-80px;
+    font-size:28px;
+    animation:float 14s linear infinite;
+    opacity:.85;
+}
 
-  @keyframes floatUp {
-    0% { transform: translateY(100vh) scale(1); opacity: 1; }
-    100% { transform: translateY(-50px) scale(1.5); opacity: 0; }
-  }
+.floating span:nth-child(1){left:5%;animation-delay:0s;}
+.floating span:nth-child(2){left:15%;animation-delay:2s;}
+.floating span:nth-child(3){left:28%;animation-delay:5s;}
+.floating span:nth-child(4){left:42%;animation-delay:1s;}
+.floating span:nth-child(5){left:58%;animation-delay:7s;}
+.floating span:nth-child(6){left:73%;animation-delay:3s;}
+.floating span:nth-child(7){left:88%;animation-delay:6s;}
+.floating span:nth-child(8){left:95%;animation-delay:9s;}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+    position:relative;
+    z-index:2;
+}
+
+.card{
+    width:100%;
+    max-width:750px;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(12px);
+    border-radius:30px;
+    padding:45px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(255,105,180,.25);
+    animation:fadeIn 1.5s ease;
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:70px;
+    color:#ff4f87;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    font-size:18px;
+    color:#666;
+    line-height:1.8;
+}
+
+.small{
+    margin-top:15px;
+    color:#999;
+    font-size:14px;
+}
+
+button{
+    margin-top:35px;
+    background:#ff4f87;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    border-radius:40px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#ff2d70;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Envelope */
+
+.envelope{
+    margin:45px auto 10px;
+    width:170px;
+    height:120px;
+    position:relative;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.envelope:hover{
+    transform:translateY(-8px);
+}
+
+.base{
+    width:170px;
+    height:105px;
+    background:#ff87ad;
+    position:absolute;
+    bottom:0;
+    border-radius:0 0 12px 12px;
+}
+
+.flap{
+    position:absolute;
+    width:0;
+    height:0;
+    border-left:85px solid transparent;
+    border-right:85px solid transparent;
+    border-top:65px solid #ff5d92;
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.letter{
+    position:absolute;
+    width:145px;
+    height:90px;
+    background:white;
+    left:12px;
+    bottom:10px;
+    border-radius:10px;
+    transition:1s;
+}
+
+.envelope.open .letter{
+    transform:translateY(-90px);
+}
+
+/* Hidden Letter */
+
+#message{
+    display:none;
+    margin-top:50px;
+    text-align:left;
+    animation:fadeIn 1s ease;
+}
+
+#message h2{
+    color:#ff4f87;
+    margin-bottom:15px;
+}
+
+#message p{
+    line-height:2;
+    font-size:17px;
+}
+
 </style>
 </head>
+
 <body>
 
-<div class="envelope-container" onclick="openLetter()">
-  <div class="envelope">✉️</div>
-  <div class="letter" id="letter">
-hi, good morning, baby.
-
-i just want to say na i really like you. i mean, gusto q talaga na maging part ka ng life q, and i want to upgrade things between us, i can’t go on a day without chatting ya, like goddamn men nagayuma mu ata si me kaya namimiss agad kita HAHAHAHA. well i hope na me talaga ung inaantay mo umamin ng totoo, kasi if di aq un iiyak aq ng malakas HAHAHAHA. bbbbbbut still, can i court you po? sounds funny since super far natin sa isa't isa HAHAHAHA, but kaya naman kitang i-pursue, and i’m willing to make an effort and sacrifice for ya. I like you po
-  </div>
+<div class="floating">
+<span>❤️</span>
+<span>🌸</span>
+<span>💕</span>
+<span>🌷</span>
+<span>💖</span>
+<span>🌹</span>
+<span>🩷</span>
+<span>🌺</span>
 </div>
 
+<section class="hero">
+
+<div class="card">
+
+<h1>Happy Monthsary</h1>
+
+<p class="subtitle">
+Even though we're miles apart, we're still loving and trusting each other. We overcome all the problems and pagtatampo sa loob ng isang buwan. I'm super grateful na tumagal tayo, hoping na tayo padin and malakas padin tayo next month. Always praying na okay ka, safe ka, and sana nasa maayos ka na kalagayan.
+</p>
+
+<p class="small">
+Made specially for my bebegirl mwehehe❤️
+</p>
+
+<div class="envelope" onclick="openLetter()" id="env">
+<div class="flap"></div>
+<div class="base"></div>
+<div class="letter"></div>
+</div>
+
+<button onclick="openLetter()">
+Open My Letter 💌
+</button>
+
+<div id="message"><h2>To My Love, Jennica ❤️</h2>
+
+<p>
+hi babyko, mwehehehehe. happy monthsarypo, baby. thank you always for choosing me, and thank you kasi nand'yan ka pa rin even though na minsan nasasaktan kita. i'm really sorry sa mga pagkakataon na nagiging dahilan ako ng pag-iyak at pag-ooverthink mo. thank you kasi hindi mo ako sinusukuan, kahit alam kong hindi naman naging madali lahat.
+
+forever grateful ako na ikaw 'yung dumating sa buhay ko. ikaw 'yung taong nagbigay ng kulay sa buhay ko, at sobrang saya ko kasi ikaw ang nakilala ko. hindi ko man laging napapakita nang maayos, pero mahal na mahal kita, baby. i appreciate every little thing na ginagawa mo para sa'kin, kahit gaano pa kaliit 'yan.
+
+sorry po, babyy, if wala muna akong maibigay sa'yo right now. i'm really at zero talaga, baby, and nahihiya ako kasi gusto kitang i-spoil at mapasaya palagi. pero i promise, kapag nakagaan-gaan na ako or nagkaroon man ako ng kahit konting budget, ibibili talaga kita ng makeup na gusto mo, foods na gusto mo, at kung ano pa man ang magpapasaya sa'yo. deserve mo 'yon, baby, and i can't wait na maibigay ko rin sa'yo lahat ng gusto kong ibigay.
+
+i promise na i'll keep working on myself para mas maging better boyfriend para sa'yo. gusto kong iparamdam sa'yo araw-araw na ikaw lang ang gusto kong piliin, ngayon at sa mga susunod pang araw. wala akong ibang hihilingin kundi ang makasama ka, gumawa pa tayo ng maraming memories, at sabay nating abutin lahat ng pangarap natin.
+
+i love you so much, babyko. happy monthsary ulit sa'tin. thank you for staying, for loving me, and for believing in us. sana marami pa tayong monthsaries na ipagdiwang hhanggang sa maging tayo at mag sama sa isang bahay po, iloveyouumylovee<33.<br><br>
+
+<b>Bakla Mueh na Asawa</b>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section style="padding:70px 20px;text-align:center;">
+
+<h2 style="color:#ff4f87;font-family:'Great Vibes',cursive;font-size:55px;">
+Our Memories 📸
+</h2>
+
+<p style="margin-bottom:30px;color:#777;">
+</p>
+
+<div style="
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+">
+
+<img src="1.jpg" style="width:220px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.15);">
+<img src="2.jpg" style="width:220px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.15);">
+<img src="3.jpg" style="width:220px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.15);">
+<img src="4.jpg" style="width:220px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.15);">
+
+
+</div>
+
+</section>
+
+<section style="padding:60px;text-align:center;">
+
+<h2 style="color:#ff4f87;font-family:'Great Vibes',cursive;font-size:50px;">
+</section>
+
+<section style="padding:70px 20px;text-align:center;">
+
+<h2 style="font-family:'Great Vibes';font-size:55px;color:#ff4f87;">
+One Last Thing...
+</h2>
+
+<p style="
+max-width:700px;
+margin:auto;
+line-height:2;
+font-size:18px;
+color:#666;
+">
+
+Distance can never measure how much I love you.
+every sunrise brings me one day closer to seeing you again.
+
+Until that day comes...
+
+please pleaseeee keep smiling,
+keep believing in us,
+and never forget that someone,
+somewhere,
+is loving you with all his heart.
+
+
+
+</p>
+
+</section>
+
 <script>
-function openLetter() {
-  const letter = document.getElementById('letter');
-  if(letter.style.display === 'none') {
-    letter.style.display = 'block';
-  } else {
-    letter.style.display = 'none';
-  }
+
+function openLetter(){
+
+document.getElementById("env").classList.add("open");
+
+setTimeout(function(){
+
+document.getElementById("message").style.display="block";
+
+document.getElementById("message").scrollIntoView({
+behavior:"smooth"
+});
+
+},800);
+
 }
 
-// Floating hearts
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'floating-heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.fontSize = 14 + Math.random() * 20 + 'px';
-  heart.innerText = '❤️';
-  heart.style.animationDuration = 3 + Math.random() * 3 + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
+// CHANGE THIS TO YOUR ANNIVERSARY DATE
+const startDate = new Date("2026-06-08");
+
+function updateTimer(){
+
+const now = new Date();
+
+let diff = now - startDate;
+
+let days = Math.floor(diff/1000/60/60/24);
+
+let months = Math.floor(days/30);
+
+days = days % 30;
+
+let hours = now.getHours();
+
+document.getElementById("timer").innerHTML =
+months + " Months ❤️ " + days + " Days ❤️ " + hours + " Hours";
+
 }
 
-setInterval(createHeart, 500);
+updateTimer();
+
+setInterval(updateTimer,1000);
+
 </script>
 
 </body>
